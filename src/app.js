@@ -1,0 +1,137 @@
+//Web dependencies
+const express = require('express')
+const helmet = require('helmet')
+
+const chalk = require('chalk')
+
+const app = express()
+const port = process.env.PORT || 8080
+app.set('json spaces', 2)
+
+app.use(helmet())
+app.use(express.json())
+
+//API
+const account = require('./api/account')
+const message = require('./api/message')
+
+app.get('/wcg/account/:address', async (req, res) => {
+    const WCG_ADDRESS = req.params.address
+
+    if (!WCG_ADDRESS) {
+        return res.status(400).json({
+            error: {
+                code: res.statusCode,
+                message: 'Please provide address parameter in the following format: WCG-1234-ABCD-5678-EFGH'
+            }
+        })
+    }
+
+    console.log(WCG_ADDRESS)
+
+    try {
+        const accountObject = await account.details(WCG_ADDRESS)
+
+        res.json({
+            account: {
+                accountNo: accountObject.accountNo,
+                publicKey: accountObject.publicKey,
+                balances: accountObject.unconfirmedAssetBalances
+            },
+            query: WCG_ADDRESS
+        })
+    } catch (e) {
+        res.status(400).json({
+            error: {
+                code: res.statusCode,
+                message: e.message
+            }
+        })
+    }
+})
+
+app.post('/wcg/assets/:asset', async (req, res) => {
+
+    const quantityDenominator = 10000
+    const feeDenominator = 100000000
+
+    const secret = req.headers.secret
+    const recipient = req.headers.recipient
+    const public = req.headers.public
+    const asset = req.params.asset
+    const quantity = req.headers.quantity * quantityDenominator
+    const fee = 0.02 * feeDenominator
+
+    try {
+        await account.sendAsset({
+            secret,
+            recipient,
+            public,
+            asset,
+            quantity,
+            fee
+        })
+
+        res.json({
+            payload: {
+                recipient,
+                public_key: public,
+                asset,
+                quantity: req.headers.quantity
+            }
+        })
+    } catch (e) {
+        res.status(400).json({
+            error: {
+                code: res.statusCode,
+                message: e.message
+            }
+        })
+    }
+
+}).get('/wcg/assets/:asset', (req, res) => {
+    res.status(405).json({
+        error: {
+            code: res.statusCode,
+            message: `${req.method} method is invalid.`,
+        }
+    })
+})
+
+app.post('/wcg/sendwcg/:amountNQT/:secret/:recipient+:message', (req, res) => {
+
+    const quantityDenominator = req.params.amountNQT * 1000000000
+    const feeDenominator = 100000000
+
+})
+
+app.get('/wcg/topsecretlog', (req, res) => {
+
+    message((error, response) => {
+        if (error) {
+            res.header("Content-Type", 'application/json')
+            res.status(400)
+            return res.send({
+                error
+            })
+        }
+
+        res.header("Content-Type", 'application/json')
+        res.send({
+            response
+        })
+    })
+})
+
+app.get('*', (req, res) => {
+    res.status(404).json({
+        error: {
+            code: res.statusCode,
+            message: 'Valid service parameter must be provided.',
+        }
+    })
+})
+
+app.listen(port, () => {
+    console.log(chalk.green.bold.inverse('Server is listening at port ' + port))
+})
