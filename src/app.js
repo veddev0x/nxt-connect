@@ -55,12 +55,17 @@ app.post('/wcg/assets/:asset', async (req, res) => {
     const quantityDenominator = 10000
     const feeDenominator = 100000000
 
-    const secret = req.headers.secret
-    const recipient = req.headers.recipient
-    const public = req.headers.public
+    // Secret Header
+    const secret = req.headers['x-secret-pass']
+
+    // Route Parameters
     const asset = req.params.asset
-    const quantity = req.headers.quantity * quantityDenominator
-    const fee = 0.02 * feeDenominator
+
+    // Query Parameters
+    const recipient = req.query.recipient
+    const public = req.query.public_key
+    const quantity = req.query.quantity * quantityDenominator
+    const fee = req.query.fee * feeDenominator || 0.02 * feeDenominator
 
     try {
         await account.sendAsset({
@@ -75,9 +80,9 @@ app.post('/wcg/assets/:asset', async (req, res) => {
         res.json({
             payload: {
                 recipient,
-                public_key: public,
+                public,
                 asset,
-                quantity: req.headers.quantity
+                quantity
             }
         })
     } catch (e) {
