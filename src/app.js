@@ -9,13 +9,11 @@ const port = process.env.PORT || 8080
 app.set('json spaces', 2)
 
 app.use(helmet())
-app.use(express.json())
 
-//API
 const account = require('./api/account')
 const message = require('./api/message')
 
-app.get('/wcg/account/:address', async (req, res) => {
+app.get('/api/account/:address', async (req, res) => {
     const WCG_ADDRESS = req.params.address
 
     if (!WCG_ADDRESS) {
@@ -50,7 +48,7 @@ app.get('/wcg/account/:address', async (req, res) => {
     }
 })
 
-app.post('/wcg/assets/:asset', async (req, res) => {
+app.post('/api/assets/:asset', async (req, res) => {
 
     const quantityDenominator = 10000
     const feeDenominator = 100000000
@@ -94,7 +92,7 @@ app.post('/wcg/assets/:asset', async (req, res) => {
         })
     }
 
-}).get('/wcg/assets/:asset', (req, res) => {
+}).get('/api/assets/:asset', (req, res) => {
     res.status(405).json({
         error: {
             code: res.statusCode,
@@ -103,7 +101,7 @@ app.post('/wcg/assets/:asset', async (req, res) => {
     })
 })
 
-app.post('/wcg/sendwcg/:amountNQT/:secret/:recipient+:message', (req, res) => {
+app.post('/api/wcg', (req, res) => {
 
     const quantityDenominator = req.params.amountNQT * 1000000000
     const feeDenominator = 100000000

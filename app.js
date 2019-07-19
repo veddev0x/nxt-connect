@@ -1,7 +1,5 @@
 const peersAPI = require('./utils/peersAPI.js')
-const request = require('request')
 const chalk = require('chalk')
-const dns = require('dns')
 
 peersAPI.getPeers((error, peersData) => {
     if (error) {
