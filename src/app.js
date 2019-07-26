@@ -30,14 +30,7 @@ app.get('/api/account/:address', async (req, res) => {
     try {
         const accountObject = await account.details(WCG_ADDRESS)
 
-        res.json({
-            account: {
-                accountNo: accountObject.accountNo,
-                publicKey: accountObject.publicKey,
-                balances: accountObject.unconfirmedAssetBalances
-            },
-            query: WCG_ADDRESS
-        })
+        res.json(accountObject)
     } catch (e) {
         res.status(400).json({
             error: {
@@ -80,7 +73,7 @@ app.post('/api/assets/:asset', async (req, res) => {
                 recipient,
                 public,
                 asset,
-                quantity
+                quantity: req.query.quantity
             }
         })
     } catch (e) {
@@ -101,29 +94,10 @@ app.post('/api/assets/:asset', async (req, res) => {
     })
 })
 
-app.post('/api/wcg', (req, res) => {
-
+app.post('/api/payment', (req, res) => {
     const quantityDenominator = req.params.amountNQT * 1000000000
     const feeDenominator = 100000000
 
-})
-
-app.get('/wcg/topsecretlog', (req, res) => {
-
-    message((error, response) => {
-        if (error) {
-            res.header("Content-Type", 'application/json')
-            res.status(400)
-            return res.send({
-                error
-            })
-        }
-
-        res.header("Content-Type", 'application/json')
-        res.send({
-            response
-        })
-    })
 })
 
 app.get('*', (req, res) => {

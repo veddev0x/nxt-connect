@@ -12,11 +12,11 @@ const details = (address) => {
         const nqtDenominator = 100000000
         const qntDenominator = 10000
 
-        const WCG_ACCOUNTINFO_URL = WCG_HOST + WCG_ARGUMENT + 'getAccount&account=' + address + '&includeAssets=true&includeCurrencies=true&includeLessors=true&includeEffectiveBalance=true'
+        const DETAILS_ENDPOINT = WCG_HOST + WCG_ARGUMENT + 'getAccount&account=' + address + '&includeAssets=true&includeCurrencies=true&includeLessors=true&includeEffectiveBalance=true'
 
         try {
             const response = await rq.get({
-                url: WCG_ACCOUNTINFO_URL,
+                url: DETAILS_ENDPOINT,
                 simple: true,
                 json: true,
                 gzip: true
@@ -28,11 +28,12 @@ const details = (address) => {
 
             //Initialise balances object
             balances = {
-                balance: response.unconfirmedBalanceNQT / nqtDenominator + ' WCG',
+                balance: response.guaranteedBalanceNQT / nqtDenominator + ' WCG',
+                //confirmedBalance: response.unconfirmedBalanceNQT / nqtDenominator + ' WCG',
                 assetBalances: []
             }
 
-            // Sort assets into an array if it's available
+            // Sort assets into an array if it exists
             if (response.unconfirmedAssetBalances) {
                 for (let i = 0; i < response.unconfirmedAssetBalances.length; i++) {
                     balances.assetBalances.push({
@@ -42,18 +43,11 @@ const details = (address) => {
                 }
             }
 
-            // Prettify transactions history
-
             resolve({
-                // unconfirmedWCG: body.unconfirmedBalanceNQT / nqtDenominator,
-                // confirmedWCG: body.guaranteedBalanceNQT / nqtDenominator,
-                //effectiveBalanceWCG: 0,
-                unconfirmedAssetBalances: balances,
-                uncomfirmedWCG: Math.round(response.unconfirmedBalanceNQT / nqtDenominator * 100) / 100,
-                // confirmedAssetBalances: body.assetBalances,
-                wcg: response.accountRS,
-                publicKey: response.publicKey,
+                accountRS: address,
                 accountNo: response.account,
+                publicKey: response.publicKey,
+                balances,
             })
         } catch (e) {
             reject(Error(e.message))
@@ -272,6 +266,6 @@ const assetNames = (name) => {
 }
 
 module.exports = {
-    details: details,
+    details,
     sendAsset
 }

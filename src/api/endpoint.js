@@ -4,11 +4,11 @@ const endpoint = (platform) => {
         case 'wcgacc.com':
         case 'wcg':
             return ({
-                WCG_HOST: 'http://172.104.176.246/',
+                WCG_HOST: 'http://209.97.167.183/',
                 WCG_ARGUMENT: 'wcg?requestType='
             })
         default:
-            return platform + 'API endpoint is not found'
+            return platform + 'Invalid NXT platform.'
     }
 }
 
