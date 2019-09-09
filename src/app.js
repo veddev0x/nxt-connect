@@ -1,20 +1,20 @@
 //Web dependencies
-const express = require('express')
-const helmet = require('helmet')
+const express = require('express');
+const helmet = require('helmet');
 
-const chalk = require('chalk')
+const chalk = require('chalk');
 
-const app = express()
-const port = process.env.PORT || 8080
-app.set('json spaces', 2)
+const app = express();
+const port = process.env.PORT || 8080;
+app.set('json spaces', 2);
 
-app.use(helmet())
+app.use(helmet());
 
-const account = require('./api/account')
-const message = require('./api/message')
+const account = require('./api/account');
+const message = require('./api/message');
 
 app.get('/api/account/:address', async (req, res) => {
-    const WCG_ADDRESS = req.params.address
+    const WCG_ADDRESS = req.params.address;
 
     if (!WCG_ADDRESS) {
         return res.status(400).json({
@@ -25,10 +25,10 @@ app.get('/api/account/:address', async (req, res) => {
         })
     }
 
-    console.log(WCG_ADDRESS)
+    console.log(WCG_ADDRESS);
 
     try {
-        const accountObject = await account.details(WCG_ADDRESS)
+        const accountObject = await account.details(WCG_ADDRESS);
 
         res.json(accountObject)
     } catch (e) {
@@ -39,24 +39,24 @@ app.get('/api/account/:address', async (req, res) => {
             }
         })
     }
-})
+});
 
 app.post('/api/assets/:asset', async (req, res) => {
 
-    const quantityDenominator = 10000
-    const feeDenominator = 100000000
+    const quantityDenominator = 10000;
+    const feeDenominator = 100000000;
 
     // Secret Header
-    const secret = req.headers['x-secret-pass']
+    const secret = req.headers['x-secret-pass'];
 
     // Route Parameters
-    const asset = req.params.asset
+    const asset = req.params.asset;
 
     // Query Parameters
-    const recipient = req.query.recipient
-    const public = req.query.public_key
-    const quantity = req.query.quantity * quantityDenominator
-    const fee = req.query.fee * feeDenominator || 0.02 * feeDenominator
+    const recipient = req.query.recipient;
+    const public = req.query.public_key;
+    const quantity = req.query.quantity * quantityDenominator;
+    const fee = req.query.fee * feeDenominator || 0.02 * feeDenominator;
 
     try {
         await account.sendAsset({
@@ -66,7 +66,7 @@ app.post('/api/assets/:asset', async (req, res) => {
             asset,
             quantity,
             fee
-        })
+        });
 
         res.json({
             payload: {
@@ -92,13 +92,13 @@ app.post('/api/assets/:asset', async (req, res) => {
             message: `${req.method} method is invalid.`,
         }
     })
-})
+});
 
 app.post('/api/payment', (req, res) => {
-    const quantityDenominator = req.params.amountNQT * 1000000000
+    const quantityDenominator = req.params.amountNQT * 1000000000;
     const feeDenominator = 100000000
 
-})
+});
 
 app.get('*', (req, res) => {
     res.status(404).json({
@@ -107,8 +107,8 @@ app.get('*', (req, res) => {
             message: 'Valid service parameter must be provided.',
         }
     })
-})
+});
 
 app.listen(port, () => {
     console.log(chalk.green.bold.inverse('Server is listening at port ' + port))
-})
+});
