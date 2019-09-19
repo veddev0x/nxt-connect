@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a99211b2-a479-4961-bcc5-c9281700dc9f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/lib/account.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/asset.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/core.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/account.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/endpoint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/peersAPI.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,14 +22,31 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1QYn9WbUD1x2xOqAtmTrD2VjjXy" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../muniversity-sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../williamks.com" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\Projects\Nodejs\nxt-connect\src\config" />
+      <recent name="G:\Projects\Nodejs\nxt-connect\src\utils" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -59,6 +88,23 @@
       <workItem from="1567991471107" duration="3000" />
       <workItem from="1567992538893" duration="38000" />
       <workItem from="1567993038767" duration="23000" />
+      <workItem from="1567995196735" duration="156000" />
+      <workItem from="1567995480189" duration="182000" />
+      <workItem from="1567996149612" duration="6000" />
+      <workItem from="1568110381106" duration="3164000" />
+      <workItem from="1568113798874" duration="107000" />
+      <workItem from="1568113925838" duration="7362000" />
+      <workItem from="1568125410075" duration="3929000" />
+      <workItem from="1568244077135" duration="2789000" />
+      <workItem from="1568261920610" duration="730000" />
+      <workItem from="1568263328660" duration="331000" />
+      <workItem from="1568263682610" duration="134000" />
+      <workItem from="1568305191267" duration="51000" />
+      <workItem from="1568306148678" duration="6000" />
+      <workItem from="1568306366394" duration="1852000" />
+      <workItem from="1568449595886" duration="3480000" />
+      <workItem from="1568533634439" duration="1491000" />
+      <workItem from="1568719390623" duration="18276000" />
     </task>
     <servers />
   </component>

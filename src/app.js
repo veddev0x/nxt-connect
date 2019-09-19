@@ -2,16 +2,16 @@
 const express = require('express');
 const helmet = require('helmet');
 
-const chalk = require('chalk');
-
 const app = express();
 const port = process.env.PORT || 8080;
 app.set('json spaces', 2);
 
 app.use(helmet());
 
-const account = require('./api/account');
-const message = require('./api/message');
+const account = require('./lib/account');
+
+// Core dependencies
+const core = require('./utils/core');
 
 app.get('/api/account/:address', async (req, res) => {
     const WCG_ADDRESS = req.params.address;
@@ -25,7 +25,7 @@ app.get('/api/account/:address', async (req, res) => {
         })
     }
 
-    console.log(WCG_ADDRESS);
+    console.info(WCG_ADDRESS);
 
     try {
         const accountObject = await account.details(WCG_ADDRESS);
@@ -42,11 +42,7 @@ app.get('/api/account/:address', async (req, res) => {
 });
 
 app.post('/api/assets/:asset', async (req, res) => {
-
-    const quantityDenominator = 10000;
-    const feeDenominator = 100000000;
-
-    // Secret Header
+    // X-Secret-Pass Header
     const secret = req.headers['x-secret-pass'];
 
     // Route Parameters
@@ -54,15 +50,15 @@ app.post('/api/assets/:asset', async (req, res) => {
 
     // Query Parameters
     const recipient = req.query.recipient;
-    const public = req.query.public_key;
-    const quantity = req.query.quantity * quantityDenominator;
-    const fee = req.query.fee * feeDenominator || 0.02 * feeDenominator;
+    const pubKey = req.query.public_key;
+    const quantity = req.query.quantity;
+    const fee = req.query.fee || 0.02;
 
     try {
         await account.sendAsset({
             secret,
             recipient,
-            public,
+            pubKey,
             asset,
             quantity,
             fee
@@ -71,7 +67,7 @@ app.post('/api/assets/:asset', async (req, res) => {
         res.json({
             payload: {
                 recipient,
-                public,
+                pubKey,
                 asset,
                 quantity: req.query.quantity
             }
@@ -110,5 +106,6 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(chalk.green.bold.inverse('Server is listening at port ' + port))
+    console.info(`Server is listening at port ${port}`);
+    core.initiate();
 });
