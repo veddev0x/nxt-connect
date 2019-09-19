@@ -54,8 +54,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Node.js.start" />
       <item itemvalue="Node.js.dev" />
+      <item itemvalue="Node.js.start" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -91,6 +91,7 @@
       <workItem from="1568449595886" duration="3480000" />
       <workItem from="1568533634439" duration="1491000" />
       <workItem from="1568719390623" duration="18448000" />
+      <workItem from="1568882272613" duration="352000" />
     </task>
     <servers />
   </component>
