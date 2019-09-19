@@ -6,11 +6,10 @@ const {data} = require('../utils/core');
 
 const details = (address) => {
     return new Promise(async (resolve, reject) => {
-        const nqtDenominator = 100000000;
-
-        const BASE_URL = `http://${_.sample(data.peers)}/${data.platform}?requestType=getAccount&account=${address}&includeAssets=true&includeCurrencies=true&includeLessors=true&includeEffectiveBalance=true`;
-
         try {
+            const nqtDenominator = 100000000;
+            const BASE_URL = `http://${_.sample(data.peers)}/${data.platform}?requestType=getAccount&account=${address}&includeAssets=true&includeCurrencies=true&includeLessors=true&includeEffectiveBalance=true`;
+
             const accountData = await cloudscraper.get({
                 url: BASE_URL,
                 simple: true,

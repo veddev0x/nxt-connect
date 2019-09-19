@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a99211b2-a479-4961-bcc5-c9281700dc9f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/asset.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/asset.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/core.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,12 +28,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1QYn9WbUD1x2xOqAtmTrD2VjjXy" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../williamks.com" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
@@ -58,8 +63,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Node.js.start" />
       <item itemvalue="Node.js.dev" />
+      <item itemvalue="Node.js.start" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -97,6 +102,12 @@
       <workItem from="1568719390623" duration="18448000" />
       <workItem from="1568882272613" duration="1183000" />
       <workItem from="1568887745634" duration="2421000" />
+      <workItem from="1568890825553" duration="85000" />
+      <workItem from="1568894731284" duration="74000" />
+      <workItem from="1568894811665" duration="94000" />
+      <workItem from="1568894915541" duration="24000" />
+      <workItem from="1568894959541" duration="611000" />
+      <workItem from="1568900773423" duration="2339000" />
     </task>
     <servers />
   </component>

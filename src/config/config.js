@@ -1,5 +1,5 @@
 module.exports = {
-    host: 'https://n05.wcgacc.com/index.html',
+    host: 'li1767-246.members.linode.com',
     platform: 'wcg',
     indexPeers: false
 };

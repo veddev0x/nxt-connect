@@ -3,41 +3,25 @@ const {assets} = require('../utils/core');
 const getAssetSlugById = (id) => {
     const asset = assets.find(asset => asset.id === id);
 
-    if (!asset) {
-        throw new Error('Please provide a valid asset id!')
-    } else {
-        return asset.slug
-    }
+    return asset ? asset.slug : new Error('Please provide a valid asset id!')
 };
 
 const getAssetIdBySlug = (slug) => {
     const asset = assets.find(asset => asset.slug === slug);
 
-    if (!asset) {
-        throw new Error('Please provide a valid asset slug!')
-    } else {
-        return asset.id
-    }
+    return asset ? asset.id : new Error('Please provide a valid asset slug!')
 };
 
 const getAssetDenominatorByAsset = (identifier) => {
-    const asset = assets.find(asset => asset.slug === identifier || asset.id === identifier);
+    const asset = assets.find(asset => asset.slug === identifier || asset.id === identifier || asset.description === identifier);
 
-    if (!asset) {
-        throw new Error('Please provide a valid asset!')
-    } else {
-        return asset.decimals
-    }
+    return asset ? asset.decimals : new Error('Please provide a valid asset!')
 };
 
 const getAssetDescriptionByAsset = (identifier) => {
-    const asset = assets.find(asset => asset.slug === identifier || asset.id === identifier);
+    const asset = assets.find(asset => asset.slug === identifier || asset.id === identifier || asset.description === identifier);
 
-    if (!asset) {
-        throw new Error('Please provide a valid asset!')
-    } else {
-        return asset.description
-    }
+    return asset ? asset.description : new Error('Please provide a valid asset!')
 };
 
 module.exports = {
