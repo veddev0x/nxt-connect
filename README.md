@@ -34,7 +34,7 @@ Keeping nxt-connect running after closing the terminal can be done in a few ways
 
 **Example Response**
 ```bash
-curl -X GET https://nxt.imvictor.me/account/WCG-83F6-KTWP-EWUK-96HNS
+curl https://nxt.imvictor.me/api/account/WCG-83F6-KTWP-EWUK-96HNS
 ```
 
 ```json
