@@ -15,12 +15,14 @@ const connectPeer = async () => {
     if (!host || !platform) {
         console.error('Please input missing config value')
     } else if (!indexPeers) {
-        data.peers.push(host);
-        console.info(`Connected to ${data.peers.length} peer(s)`)
+        // Regex for removing http/https://, www, and the trailing /
+        data.peers.push(host.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0]);
+
+        console.info(`Connected to http://${host.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0]}/${platform}`)
     } else {
         try {
-            const BASE_URL = `http://${host}/${platform}?requestType=getPeers&state=CONNECTED&active=true`;
-
+            // Regex for removing http/https://, www, and the trailing /
+            const BASE_URL = `http://${host.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0]}/${platform}?requestType=getPeers&state=CONNECTED&active=true`;
             const peersData = await cloudscraper.get({
                 url: BASE_URL,
                 json: true,
@@ -52,9 +54,10 @@ const connectPeer = async () => {
             }
 
             if (data.peers.length === 0) {
-                console.error('It seems that the master host does not have any compatible working peers, please try again later')
+                data.peers.push(host);
+                console.info(`Connected to default http://${peer.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0]}/${platform}`)
             } else {
-                console.info(`Connected to ${data.peers.length} peer(s)`)
+                data.peers.forEach(peer => console.info(`Connected to http://${peer.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0]}/${platform}`))
             }
         } catch (e) {
             console.error(e.message)

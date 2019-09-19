@@ -1,5 +1,5 @@
 module.exports = {
-    host: '172.104.176.246',
+    host: 'https://n05.wcgacc.com/index.html',
     platform: 'wcg',
     indexPeers: false
 };
