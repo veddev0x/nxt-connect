@@ -54,8 +54,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Node.js.dev" />
       <item itemvalue="Node.js.start" />
+      <item itemvalue="Node.js.dev" />
     </list>
   </component>
   <component name="SvnConfiguration">
