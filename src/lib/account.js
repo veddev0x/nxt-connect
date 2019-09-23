@@ -1,10 +1,10 @@
 const cloudscraper = require('cloudscraper');
 const _ = require('lodash');
 
-const {getAssetIdBySlug, getAssetSlugById, getAssetDenominatorByAsset, getAssetDescriptionByAsset} = require('./asset');
+const {getAssetSlugById, getAssetDenominatorByAsset, getAssetDescriptionByAsset} = require('./asset');
 const {data} = require('../utils/core');
 
-const details = (address) => {
+const getAccount = (address) => {
     return new Promise(async (resolve, reject) => {
         try {
             const nqtDenominator = 100000000;
@@ -49,36 +49,6 @@ const details = (address) => {
     })
 };
 
-const sendAsset = ({secret, recipient, pubKey, asset, quantity, fee}) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            const assetId = getAssetIdBySlug(asset);
-            quantity = quantity * getAssetDenominatorByAsset(asset);
-            fee = fee * 100000000;
-
-            const BASE_URL = `http://${_.sample(data.peers)}/${data.platform}?requestType=transferAsset&secretPhrase=${secret}&recipient=${recipient}&asset=${assetId}&quantityQNT=${quantity}&feeNQT=${fee}&deadline=1440&message=${pubKey}`;
-
-            const assetData = await cloudscraper.post({
-                url: BASE_URL,
-                json: true
-            });
-
-            if (assetData.errorCode) {
-                return reject(new Error(assetData.errorDescription))
-            }
-
-            resolve()
-        } catch (e) {
-            reject(new Error(e.message))
-        }
-    })
-};
-
-const sendNQT = () => {
-
-};
-
 module.exports = {
-    details,
-    sendAsset,
+    getAccount,
 };

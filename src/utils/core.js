@@ -70,7 +70,7 @@ const connectPeer = () => {
     }))
 };
 
-const getAssets = async () => {
+const getAssetsList = async () => {
     return new Promise((async (resolve, reject) => {
         try {
             const BASE_URL = `http://${_.sample(data.peers)}/${data.platform}?requestType=getAllAssets`;
@@ -101,7 +101,7 @@ const getAssets = async () => {
 const initiate = async () => {
     try {
         await connectPeer();
-        await getAssets()
+        await getAssetsList()
     } catch (e) {
         console.error(e.message)
     }

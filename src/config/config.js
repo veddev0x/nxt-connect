@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     host: 'li1767-246.members.linode.com',
     platform: 'wcg',

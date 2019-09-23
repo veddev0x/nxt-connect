@@ -1,4 +1,32 @@
-const {assets} = require('../utils/core');
+const cloudscraper = require('cloudscraper');
+const _ = require('lodash');
+
+const {data, assets} = require('../utils/core');
+
+const transferAsset = ({secret, recipient, pubKey, asset, quantity, fee}) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const assetId = getAssetIdBySlug(asset);
+            quantity = quantity * getAssetDenominatorByAsset(asset);
+            fee = fee * 100000000;
+
+            const BASE_URL = `http://${_.sample(data.peers)}/${data.platform}?requestType=transferAsset&secretPhrase=${secret}&recipient=${recipient}&asset=${assetId}&quantityQNT=${quantity}&feeNQT=${fee}&deadline=1440&message=${pubKey}`;
+
+            const assetData = await cloudscraper.post({
+                url: BASE_URL,
+                json: true
+            });
+
+            if (assetData.errorCode) {
+                return reject(new Error(assetData.errorDescription))
+            }
+
+            resolve()
+        } catch (e) {
+            reject(new Error(e.message))
+        }
+    })
+};
 
 const getAssetSlugById = (id) => {
     const asset = assets.find(asset => asset.id === id);
@@ -25,6 +53,7 @@ const getAssetDescriptionByAsset = (identifier) => {
 };
 
 module.exports = {
+    transferAsset,
     getAssetSlugById,
     getAssetIdBySlug,
     getAssetDenominatorByAsset,
