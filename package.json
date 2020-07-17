@@ -9,7 +9,7 @@
     "cloudscraper": "^4.1.4",
     "express": "^4.16.4",
     "helmet": "^3.18.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
   },
